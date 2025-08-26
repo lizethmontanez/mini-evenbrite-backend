@@ -2,7 +2,7 @@ import { User } from "../models/User.js";
 import { signAccessToken, signRefreshToken } from "../utils/jwt.js";
 import { AppError } from "../utils/errors.js";
 
-//const allowedRoles = ['user','organizer','staff','admin'];
+const allowedRoles = ['user','organizer','staff','admin'];
 
 export async function register({ name, email, password, role}) {
     const exist = await User.findOne({email});
