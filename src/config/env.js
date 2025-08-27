@@ -18,18 +18,18 @@ export const env = {
         serviceRoleKey:process.env.SUPABASE_SERVICE_ROLE_KEY,
         bucket: process.env.SUPABASE_BUCKET
     }
-}
+};
 
-['mongoUri', 'jwt', 'qrSigningSecret', 'supabase'].forEach(k => {
-    if (k === jwt) {
-        if (!env.jwt.accessSecret || !env.jwt.refreshSecret) {
-            console.warn('[WARN] Missing JWT secrets. Set JWT_ACCESS_SECRET and JWT_REFRESH_SECRET');
-        }
-    } else if (k === 'supabase'){
-        if (!env.supabase.url || !env.supabase.serviceRoleKey) {
-            console.warn('[WARN] Missing JWT secrets. Set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY');
-        }
-    } else if (!env[k]){
-        console.warn(`[WARN] Missing env var for ${k}`);
+['mongoUri','jwt','qrSigningSecret','supabase'].forEach((k) => {
+  if (k === 'jwt') {
+    if (!env.jwt.accessSecret || !env.jwt.refreshSecret) {
+      console.warn('[WARN] Missing JWT secrets. Set JWT_ACCESS_SECRET and JWT_REFRESH_SECRET.');
     }
+  } else if (k === 'supabase') {
+    if (!env.supabase.url || !env.supabase.serviceRoleKey) {
+      console.warn('[WARN] Missing Supabase config. Set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY.');
+    }
+  } else if (!env[k]) {
+    console.warn(`[WARN] Missing env var for ${k}.`);
+  }
 });
