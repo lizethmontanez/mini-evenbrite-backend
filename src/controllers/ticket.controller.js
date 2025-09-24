@@ -42,3 +42,12 @@ export async function scan(req, res, next) {
         res.json({ ok: true, ticket: updated });
     } catch (e) { next(e); }
 }
+
+export async function getMyTickets(req, res, next) {
+    try {
+        const tickets = await Tickets.findByBuyer(req.user.sub)
+        res.json({ items: tickets })
+    } catch (e) {
+        next(e)
+    }
+}

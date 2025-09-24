@@ -8,5 +8,6 @@ const router = Router();
 
 router.post('/purchase', requireAuth, validateBody(purchaseSchema), TicketCtrl.purchase);
 router.post('/scan', requireAuth, requireRole('organizer','staff','admin'), TicketCtrl.scan);
+router.get('/mine', requireAuth, TicketCtrl.getMyTickets);
 
 export default router;

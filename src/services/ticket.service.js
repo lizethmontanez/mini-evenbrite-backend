@@ -49,3 +49,9 @@ export async function checkIn(ticket) {
 export async function findTicketById(id) {
     return Ticket.findById(id);
 }
+
+export async function findByBuyer(buyerId) {
+    return Ticket.find({ buyer: buyerId })
+        .populate('event') 
+        .lean()
+}
